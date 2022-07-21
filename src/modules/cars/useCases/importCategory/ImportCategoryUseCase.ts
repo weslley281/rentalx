@@ -1,13 +1,14 @@
 import fs from "fs";
 import { parse as csvParse } from "csv-parse";
 import { ICaregoriesRepository } from "../../repositories/ICaregoriesRepository";
+import { CategoriesRepository } from "../../repositories/implementations/CaregoriesRepository";
 
 interface IImportCategory{
     name: string;
     descripition: string;
 }
 class ImportCategoryUseCase{
-    constructor(private categoryRepository: ICaregoriesRepository){}
+    constructor(private categoriesRepository: ICaregoriesRepository){}
 
     loadCategories(file: Express.Multer.File): Promise<IImportCategory>{
         return new Promise((resolve, reject) => {
@@ -40,12 +41,12 @@ class ImportCategoryUseCase{
         categories.map(async (category) => {
             const { name, descripition } = category;
 
-            const existCategory = this.categoryRepository.findByName(name);
+            const existCategory = this.categoriesRepository.findByName(name);
 
-            //console.log("Existe Categoria = " + existCategory);
+            console.log("Existe Categoria = " + existCategory);
 
             if(!existCategory){
-                this.categoryRepository.create({
+                this.categoriesRepository.create({
                     name,
                     descripition,
                 });
