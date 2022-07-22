@@ -1,0 +1,11 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "RentalX Documentation",
+        "descripition": "Tis is an API Tent",
+        "version": "1.0.0",
+        "contact": {
+            "email": "weslleyhenrique800@gmail.com"
+        }
+    }
+}
